@@ -1,0 +1,23 @@
+---
+- name: EC2インスタンスを作成
+  ec2:
+    image: "{{ ami_image }}"
+    instance_type: "{{ instance_type }}"
+    region: "{{ region }}"
+    key_name: "{{ key_name }}"
+    group: "{{ security_group }}" # security_group
+    vpc_subnet_id: "{{ vpc_subnet_id }}"
+    instance_tags:
+      Name: "{{ tag_name }}"
+    wait: yes
+    wait_timeout: 300
+    assign_public_ip: "{{ assign_public_ip }}"
+    volumes:
+      - device_name: "{{ device_name }}"
+        device_type: "{{ device_type }}"
+        volume_size: "{{ volume_size }}"
+        delete_on_termination: yes
+    count_tag:
+      Name: "{{ tag_name }}"
+    exact_count: 1 #重複作成停止　上のタグがいる
+  register: ec2
