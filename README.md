@@ -1,6 +1,6 @@
-ansibleで環境作れるようにした
+ansibleで　AWSと　rails環境作れるようにしたい
 
-##　最初の設定
+## 最初の設定
 ```
 export AWS_SECRET_ACCESS_KEY=
 export AWS_ACCESS_KEY_ID=
@@ -29,7 +29,7 @@ aws.yml
     assign_public_ip: yes
 ```
 
-##　aws周り
+## aws周り
 ```
 ansible-playbook -i hosts/aws/ec2.py aws.yml --private-key=/Users/hamayu/.ssh/aws_hamayu.pem
 ```
