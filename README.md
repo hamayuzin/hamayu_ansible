@@ -1,11 +1,14 @@
 ansibleで　AWSと　rails環境作れるようにしたい
 
 ## 最初の設定
+
+#### awsの認証情報
 ```
 export AWS_SECRET_ACCESS_KEY=
 export AWS_ACCESS_KEY_ID=
 ```
 
+#### awsの認証情報
 aws.yml
 ```
 ---
