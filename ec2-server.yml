@@ -1,0 +1,13 @@
+- hosts: servers
+  remote_user: ec2-user
+  become: yes
+  vars:
+    rbenv_user: ec2-user
+    rbenv_ruby_version: 2.4.1
+    users:
+      - { name: 'webmaster', uid: 601, group: 'webmaster', gid: 601, password: "password", update_password: 'on_create', comment: 'webmaster' }
+  roles:
+    - aws/yum-update
+    - aws/user
+    - aws/rbenv
+    - aws/nginx

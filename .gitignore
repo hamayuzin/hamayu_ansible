@@ -1,1 +1,3 @@
-aws.*
+*.retry
+config/*
+hosts/ec2-servers

@@ -1,0 +1,36 @@
+---
+- name: create group
+  group: name={{ item.group }} gid={{ item.gid }}
+  with_items:
+    - "{{ users }}"
+
+- name: Create user
+  user:
+    #state: absent #ユーザを削除するときはコメントアウトを外す
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+    group:  "{{ item.group }}"
+    shell: /bin/bash
+  with_items:
+    - "{{ users }}"
+  when: users #usersが1件以上の場合のみ実行
+
+- name: Add .ssh directories
+  file:
+    path: '/home/{{ item.name }}/.ssh'
+    state: directory
+    mode: 0700
+    owner: "{{ item.name }}"
+    group: "{{ item.group }}"
+  with_items:
+    - "{{ users }}"
+
+- name: Add keys
+  copy:
+    src: config/authorized_keys
+    dest: "/home/{{ item.name }}/.ssh/authorized_keys"
+    owner: "{{ item.name }}"
+    group: "{{ item.group }}"
+    mode: 0644
+  with_items:
+    - "{{ users }}"

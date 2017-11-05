@@ -1,0 +1,13 @@
+---
+  - name: "install-gcc"
+    action: yum pkg=gcc state=installed
+
+  - name: Install nginx
+    yum: name=nginx state=latest
+
+  - name: Set nginx service to start on boot
+    service: name=nginx enabled=true
+
+  - name: Put nginx.conf
+    template: src=templates/nginx.conf.j2 dest=/etc/nginx/nginx.conf backup=true mode=0644
+    notify: restart nginx
