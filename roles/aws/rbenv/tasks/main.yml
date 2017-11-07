@@ -60,9 +60,24 @@
   command: "sudo -iu {{ rbenv_user }} rbenv global {{ rbenv_ruby_version }}"
   when: rbenv_check_default|failed
 
-- name: Install mysql-devel
+- name: Install packages
   yum: name={{ item }} state=latest
   with_items:
+    - mysql-devel
+    - gcc-c++
+    - make
+    - patch
+    - libyaml-devel
+    - libffi-devel
+    - libicu-devel
+    - libxml2
+    - libxslt
+    - libxml2-devel
+    - libxslt-devel
+    - zlib-devel
+    - readline-devel
+    - mysql
+    - mysql-server
     - mysql-devel
 
 - name: Install bundler

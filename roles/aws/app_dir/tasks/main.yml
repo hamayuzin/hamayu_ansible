@@ -1,0 +1,20 @@
+---
+- name: create app フォルダ
+  file:
+    path: "{{ app_dir }}"
+    state: directory
+    mode: 0700
+    owner: "{{ item.name }}"
+    group: "{{ item.group }}"
+  with_items:
+    - "{{ users }}"
+
+- name: Add github keys
+  copy:
+    src: config/id_rsa
+    dest: "/home/{{ item.name }}/.ssh/id_rsa"
+    owner: "{{ item.name }}"
+    group: "{{ item.group }}"
+    mode: 0600
+  with_items:
+    - "{{ users }}"

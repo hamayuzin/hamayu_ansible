@@ -4,9 +4,9 @@
   vars:
     rbenv_user: webmaster
     rbenv_ruby_version: 2.4.1
-    app_name: wayak
-    app_dir: /var/www/wayak
-    server_name: staging.wayak.jp
+    app_name:
+    app_dir: /var/www/hogehoge
+    server_name:
     nginx_user: webmaster
     users:
       - { name: 'webmaster', uid: 601, group: 'webmaster', gid: 601, password: "password", update_password: 'on_create', comment: 'webmaster' }
