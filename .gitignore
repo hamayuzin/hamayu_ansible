@@ -1,6 +1,6 @@
 *.retry
 config/*
-hosts/ec2-servers
-aws.yml
-ec2-server.yml
+hosts/*ec2-servers
+*aws.yml
+*ec2-server.yml
 .boto
